@@ -1,0 +1,51 @@
+@import '../../style/brekpoint';
+@import '../../style/variables';
+
+
+
+.boxnumber{
+    display: grid;
+    width: 255px;
+    height: 120px;
+    align-items: center;
+    border: 1px solid $light-gray ;
+    border-radius: 10px;
+    transition: .5s;
+    color: $light-gray;
+    background-color: $white; 
+    
+    &-other{
+        display: grid;
+        text-align: center;
+        color: $light-gray;
+
+        &:hover{
+            color: $blue;
+        }
+    }
+    
+    &-title{
+        font-size: 18px;
+        letter-spacing: 0.4px;
+        font-family: $font-title;
+        font-weight: 700;
+    }
+
+    &-number{
+        font-size: 40px;
+        letter-spacing: 0.4px;
+        font-family: $font-title;
+        font-weight: 700;
+        color: $black;
+         transition: .5s;
+        &:hover{
+            color: $blue;
+        }
+    
+    }
+    &:hover{
+        color: $blue;
+        border-color: $blue;
+    }
+
+}

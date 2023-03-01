@@ -1,0 +1,46 @@
+@import '../../style/brekpoint';
+@import '../../style/variables';
+
+.form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
+  color: $fg;
+
+  .input-material{
+    position: relative;
+
+  .control-material{
+     width: 100%;
+     padding: 10px 0;
+     font-size: 16px;
+     margin-bottom: 30px;
+     border: none;
+     color: $fg;
+     border-bottom: 1px solid $light;
+     outline: none;
+     background: transparent;
+  }
+  label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+  }
+
+
+  input:focus ~ label,
+  input:valid ~ label {
+     top: -20px;
+     left: 0;
+     color: $light-gray;
+     font-size: 12px;
+   }
+
+  } 
+
+}

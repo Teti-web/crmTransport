@@ -1,0 +1,53 @@
+@import '../../style/brekpoint';
+@import '../../style/variables';
+
+
+
+.flex{
+    margin-top: 7px;
+    display: flex;
+    justify-content: center;
+    gap: 1.4rem ;
+    @include mobile{
+        display: block;
+        margin: 0 auto;
+       }
+}
+.task-container{
+    width: 750px;
+    
+    @include mobile{
+        width: 100%;
+    }
+}
+.chart-container{
+    width: 750px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid $gray;
+    background-color: $white;
+    overflow: hidden;
+
+    @include mobile{
+        width: 100%;
+    }
+}
+.main-inner{
+    margin-top: 10px;
+    display: flex;
+    gap: 1.5rem;
+    padding-left: 25px;
+
+    
+    @include mobile{
+        display: block;
+        padding-left: 0;
+    }
+   
+    .column{
+        width: 50%;
+       @include mobile{
+        width: 100%;
+       }
+    }
+}

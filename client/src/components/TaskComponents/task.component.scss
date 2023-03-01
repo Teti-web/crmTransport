@@ -1,0 +1,137 @@
+@import '../../style/brekpoint';
+@import '../../style/variables';
+
+.task{
+    border: 1px solid $gray;
+    border-radius: 10px;
+    padding: 5px;
+    background: $white;
+
+    &-form{
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    &-btn{
+        padding: 5px 10px;
+        border: 1px solid $gray;
+        background: transparent;
+        border-radius: 5px;
+        color: $black;
+        transition: .5s;
+        transform: translateY(20%);
+        
+        &:hover{
+           color: $blue;
+           border-color: $blue;
+        }
+    }
+
+    &-listItems{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        max-height: 230px;
+        overflow-y: scroll;
+        overflow-x: auto;
+        padding-right: 4px;
+        
+        &::-webkit-scrollbar{
+          width: 3px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+          background-color: $light-blue;
+          outline: 1px solid $blue;
+          border-radius: 5px;
+        }
+    }
+    &-item{
+        margin: 5px 0;
+        padding-bottom: 3px;
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5rem;
+        border-bottom: 1px solid $light-blue;
+
+        p{
+            width: 25%;
+            font-size: 14px;
+            font-family: $font-text;
+        }
+
+        div{
+            display: flex;
+            justify-content: space-between;
+            gap:10px;
+        }
+    }
+
+    .input-container{
+    position: relative;
+
+     .task-input{
+        background: transparent;
+        border-bottom: 1px solid  $gray;
+        color: $black;
+        padding: 10px 0;
+        font-size: 16px;
+       }
+    
+
+    label {
+        position: absolute;
+        top:0;
+        left: 0;
+        padding: 10px 0;
+        font-size: 16px;
+        pointer-events: none;
+        transition: .5s;
+      }
+    
+
+    input:focus{
+        +label{
+       top: -10px;
+       left: 0;
+       color: $light-gray;
+       font-size: 14px;
+        }
+     }
+    }
+
+     .select-container{
+        padding-top: 10px;
+
+        select{
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            border-color: $light-gray;
+            padding: 0 5px;
+        }
+        label{
+            font-size: 14px;
+            font-family: $font-text;
+        }
+     }
+
+     .update-form{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+
+        .update-new-input{
+        width: 25%;
+        background: transparent;
+        border-bottom: 1px solid  $gray;
+        color: $black;
+        padding: 10px 0;
+        font-size: 16px;
+     }
+     }
+     
+}

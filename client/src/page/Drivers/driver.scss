@@ -1,0 +1,21 @@
+@import '../../style/brekpoint';
+@import '../../style/variables';
+
+.modal_title{
+    margin: 30px 0 0;
+    padding: 0;
+    font-family: $font-title;
+    text-align: center;
+}
+.btn-form{
+    float: right;
+    border: 1px solid $fg;
+    padding: 5px 10px;
+    font-size: 16px;
+    transition: 0.4s all;
+    &:hover{
+        box-shadow: 0;
+        background-color: $dark-blue;
+        color: $white;
+    }
+}

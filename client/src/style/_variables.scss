@@ -1,0 +1,53 @@
+// colors
+$white:#fff;
+$light: #F7F8FC;
+$black:#000;
+$text-dark: #666;
+$gray:#9b9b9b;
+$light-gray:#9FA2B4;
+$light-blue:#DDE2FF;
+$color-sidebar:#A4A6B3;
+$dark-gray: #363740;
+$coral: #ff5751;
+$navy-blue: #42509e;
+$blue:#3751FF;
+$dark-blue:#003147;
+$green: #07ad90;
+
+//loader
+$fg: #17181c;
+$shade1: #727274;
+$shade2: #cccdd1;
+$shade3: #f3f4f8;
+$shade4: #ffffff;
+$dur1: 1s;
+$dur2: 6s;
+
+//border
+$border: 1px solid #9b9b9b;
+
+// fonts
+$font-text:'Open Sans', sans-serif;
+$font-title: 'Mulish', sans-serif;
+$font-other:'Roboto', sans-serif;
+
+//background
+$bg:url('../assets/homeback.jpg');
+$bg-grey:linear-gradient(90deg, rgba(47,54,64,1) 23%, rgba(24,27,32,1) 100%);
+$bg-moon:linear-gradient(90deg, rgba(208,208,208,1) 48%, rgba(145,145,145,1) 100%);
+
+// width
+$container-width-lg: 78%;
+$container-width-md: 86%;
+$container-width-sm: 90%;
+$mobile-width:600px;
+$tablet-width:1024px;
+$sidebar-width:255px;
+
+
+// Dimensions
+$prism-height: 350px;
+$prism-length: 330px;
+$prism-depth: $prism-length;
+$spacing: 20px;
+$br: 3px;

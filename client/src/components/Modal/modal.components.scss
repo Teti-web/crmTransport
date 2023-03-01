@@ -1,0 +1,46 @@
+@import '../../style/brekpoint';
+@import '../../style/variables';
+
+.modal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: $container-width-lg;
+    height: $container-width-md;
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    margin-left: 2rem;
+    top: 70px;
+    border-radius: 15px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+
+    &.active{
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    &-content{
+        padding: 20px;
+        background: $light-blue;
+        color: $fg;
+        border-radius: 12px;
+        width: 50vw;
+        height: auto;
+        transform: scale(0.5);
+        transition: 0.4s all;
+
+       &.active{
+        transform: scale(1);
+       }
+
+       svg{
+        width: 20px;
+        height: 20px;
+        color: $fg;
+        float: right;
+        margin-bottom: 10px;
+       }
+    }
+}

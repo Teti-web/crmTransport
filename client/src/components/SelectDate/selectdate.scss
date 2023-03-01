@@ -1,0 +1,15 @@
+@import '../../style/brekpoint';
+@import '../../style/variables';
+
+.select-container{
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
+    gap:0.5rem;
+    .item-select{
+      width: 160px;
+      background-color: $light;
+    }
+}
+

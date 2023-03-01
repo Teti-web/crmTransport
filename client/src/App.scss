@@ -1,0 +1,126 @@
+@import './style/variables';
+@import './style/brekpoint';
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Mulish:wght@400;500;600&family=Open+Sans:wght@300;400;500&family=Roboto:wght@300;400;500;700&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+  font-family: $font-title;
+  color: $black;
+  background: $light;
+  overflow: hidden;
+
+  @include mobile{
+    overflow-y: scroll;
+  }
+}
+.btn-container{
+  display: flex;
+  gap: 3px;
+}
+.btn-item{
+  background: transparent;
+  border: 1px solid $gray;
+  padding: 3px 5px;
+  border-radius: 5px;
+  transition: .5s;
+
+  &:hover{
+      color: $blue;
+      border-color: $blue;
+   }
+}
+a{
+  text-decoration: none;
+}
+.section{
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+.main{
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+
+  &-container{
+    width: 100%;
+    padding: 5px 30px 0 30px;
+    margin-bottom: 30px;
+  }
+}
+.center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.table-container{
+  position: relative;
+  margin: 30px auto 0;
+  padding-top: 1rem;
+  width: 1100px;
+  height: 100%;
+  overflow-x: hidden;
+  border-radius: 10px;
+  border: 1px solid $light-gray;
+  background: $white;
+}
+.calendar-container{
+  position: relative;
+  margin: 0 30px;
+}
+.translatex{
+  transform: translateX(-25%);
+}
+
+.table-header{
+  padding: 10px ;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-date{
+    position: relative;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+   
+  span{
+    left: 0;
+     color: $light-gray;
+     font-size: 12px;
+  }
+}
+.modal_title{
+    margin: 30px 0 15px;
+    padding: 0;
+    font-family: $font-title;
+    text-align: center;
+}
+.text-modal{
+  margin: 5px 0;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: $font-text;
+  font-size: 20px;
+}
+.container{
+  margin: 0 auto;
+  padding: 0;
+  width: $container-width-lg;
+
+  @include tablet{
+    width: $container-width-md;
+  }
+
+  @include mobile{
+    width: $container-width-sm;
+  }
+}
