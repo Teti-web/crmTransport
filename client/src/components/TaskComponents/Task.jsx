@@ -26,7 +26,7 @@ const Task = () => {
             const data = await request(`/api/tasks/addtask`, 'POST', {...form},{
               Authorization: `Bearer ${token}`
             })
-
+            window.location.reload(false);
           } catch (error) {}
     };
 
