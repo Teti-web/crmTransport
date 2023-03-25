@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef, useCallback, useContext, useMemo} from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -14,24 +14,24 @@ import { useHttp } from '../../hooks/http.hook';
 import { AuthContext } from '../../context/AuthContext';
 
 
-const CalendarComponents = (clickInfo) => {
+const CalendarComponents = () => {
   const [modalActive, setmodalActive] = useState(false);
   const [modalRem, setmodalRem] =useState(false);
   const [formKey, setFormKey]= useState(1);
   const {request}= useHttp();
   const {token} = useContext(AuthContext);
   const [events,setEvents] = useState([]);
-  const [isUpdating, setIsUpdating] = useState('');
   const calendarRef = useRef(null);
+  const [eventID, setEventID] = useState("");
   const [form, setForm] = useState({
     title:'', start:'', end:''
   });
+
   const [infoEvent,setInfoEvent] = useState({
     title:'', start:'', end:''
   })
-  const [eventID, setEventID] = useState("");
   
-   const changeHandler = event =>{
+  const changeHandler = event =>{
     setForm({...form, [event.target.name]:event.target.value})
    }
   const openModal = ()=>{
@@ -59,14 +59,7 @@ const CalendarComponents = (clickInfo) => {
   } catch (e) {}
  })
 
- const updateEvent = useCallback(async (id) =>{
-  try {
-    const data = await request(`/api/events/updatevent/${eventID}`, 'PATCH', null,{
-      Authorization: `Bearer ${token}`
-    }) 
-    setForm(data)
-  } catch (e) {}
- })
+
 
   const addHandler = useCallback(async () => {
     try {
@@ -163,7 +156,7 @@ const CalendarComponents = (clickInfo) => {
       <p className='text-modal'>{moment(infoEvent.end).format('H:mm MMM DD YYYY  ')}</p>
       </div>
       <div>
-        <button className='btn' >Update</button>
+        <Link className='btn' to={`/event-edit/${eventID}`}>Update</Link>
       </div>
    </Modal>
  </>)

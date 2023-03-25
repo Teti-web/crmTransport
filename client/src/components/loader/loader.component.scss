@@ -2,7 +2,11 @@
 @import '../../style/variables';
 
 .loader{
-    margin: auto;
+    margin: 0;
+	top: 0;
+	left: 0;
+	width: 100%;
+	position: absolute;
     background-image: linear-gradient(145deg, $shade3, $shade2);
 	color: $fg;
 	display: flex;
@@ -13,6 +17,7 @@
 }
 
 .preloader {
+	margin: 100px auto auto;
 	animation: largePopOut  $dur1 linear;
 	border-radius: 50%;
 	box-shadow:

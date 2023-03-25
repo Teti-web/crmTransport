@@ -21,7 +21,7 @@ const Topbar = (props) => {
     
     const getUserData = useCallback( async () =>{
       try {
-        const data = await request(`api/users/getuser`, 'GET', null,{
+        const data = await request(`/api/users/getuser`, 'GET', null,{
       Authorization: `Bearer ${token}`
        })
        setProfile(data);
@@ -42,24 +42,14 @@ const Topbar = (props) => {
             <h2>{props.title}</h2>
          </div>
          <div className='topbar-other'>
-          {/* <div className="icons">
-            <MdOutlineNotifications onClick={()=>handleClick('notification')}/>
-            <MdOutlineChat/>
-          </div> */}
           <Link to='/profil'>
            <div className='user'>
             <div className='user-image'>
-              <img src={profile.photo} alt="" />
+              <img src={profile?.photo} alt="" />
            </div> 
-            <h3 className='user-name'>{profile.name}</h3>
+            <h3 className='user-name'>{profile?.name}</h3>
            </div>
           </Link>
-
-{/* 
-        {isClicked.cart && (<Cart />)}
-        {isClicked.chat && (<Chat />)}
-        {isClicked.notification && (<Notification />)}
-        {isClicked.userProfile && (<UserProfile />)} */}
         </div>
     </div>
   )

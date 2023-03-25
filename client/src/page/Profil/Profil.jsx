@@ -37,9 +37,9 @@ useEffect(() => {
            <img src={profile.photo}/>
          </div>
          <div className='profile-info'>
-          <div className='info-item'><p>Full name:</p> <p><b>{profile.name}</b></p></div>
-          <div className='info-item'><p>Telephone:</p> <p>{profile.tel}</p></div>
-          <div className='info-item'><p>BIO:</p> <p>{profile.bio}</p></div>
+          <div className='info-item'><p>Full name:</p> <p><b>{profile?.name}</b></p></div>
+          <div className='info-item'><p>Telephone:</p> <p>{profile?.tel}</p></div>
+          <div className='info-item'><p>BIO:</p> <p>{profile?.bio}</p></div>
           <Link className='task-btn' to='/profile-edit'>Edit</Link>
          </div>
       </div>

@@ -10,7 +10,7 @@ const userController=  require('../controllers/userController');
   router.get("/logout", userController.logout);
   router.get("/getuser", protect, userController.getUser);
   router.get("/loggedin", userController.loginStatus);
-  router.patch("/updateuser/:id", protect, userController.updateUser);
+  router.patch("/updateuser", protect, userController.updateUser);
   router.patch("/changepassword", protect, userController.changePassword);
   router.post("/forgotpassword", userController.forgotPassword);
   router.put("/resetpassword/:resetToken", userController.resetPassword);

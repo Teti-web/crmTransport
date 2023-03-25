@@ -13,6 +13,7 @@ import Clients from './page/Clients/Clients';
 import Drivers from './page/Drivers/Drivers';
 import RoutesPage from './page/routesPage/Routes'
 import EditProfil from "./page/Profil/EditProfil";
+import EditEvent from "./page/Calendar/EditEvent";
 
 
 export const useRoutes = isAuthenticated =>{
@@ -25,6 +26,7 @@ export const useRoutes = isAuthenticated =>{
                  <Route path='/profile-edit' element={<EditProfil/>}/>
                  <Route path='/contact' element={<Contact/>}/>
                  <Route path='/calendar' element={<Calendar/>}/>
+                 <Route path='/event-edit/:id' element={<EditEvent/>}/>
                  <Route path='/cars' element={<Cars/>}/>
                  <Route path='/clients' element={<Clients/>}/>
                  <Route path='/drivers' element={<Drivers/>}/>
