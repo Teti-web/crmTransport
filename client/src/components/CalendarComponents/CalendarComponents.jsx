@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef, useCallback, useContext, useMemo} from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -20,7 +20,7 @@ const CalendarComponents = () => {
   const [formKey, setFormKey]= useState(1);
   const {request}= useHttp();
   const {token} = useContext(AuthContext);
-  const [events,setEvents] = useState([]);
+  const [events, setEvents] = useState([]);
   const calendarRef = useRef(null);
   const [eventID, setEventID] = useState("");
   const [form, setForm] = useState({
@@ -48,7 +48,6 @@ const CalendarComponents = () => {
     const id = info.event.extendedProps._id.toString();
     getEventClicked(id);
     setEventID(id);
-
   }
  const getEventClicked = useCallback(async (id) =>{
   try {
@@ -58,8 +57,6 @@ const CalendarComponents = () => {
     setInfoEvent(data)
   } catch (e) {}
  })
-
-
 
   const addHandler = useCallback(async () => {
     try {
@@ -90,6 +87,17 @@ const CalendarComponents = () => {
   getEventData();
 }, [getEventData]);
 
+const deleteEvent = useCallback( async() => {
+    try {
+       const data = await request(`/api/events/removevent/${eventID}`, 'PATCH',null, {
+        Authorization: `Bearer ${token}`
+      })
+      console.log(data);
+      setEvents(data);
+      // window.location.reload();
+      
+    } catch (e) {}
+})
 
 
   return (<>
@@ -155,8 +163,9 @@ const CalendarComponents = () => {
       <p className='text-modal'>{moment(infoEvent.start).format('H:mm MMM DD YYYY  ')}</p>
       <p className='text-modal'>{moment(infoEvent.end).format('H:mm MMM DD YYYY  ')}</p>
       </div>
-      <div>
+      <div className='modal-container'>
         <Link className='btn' to={`/event-edit/${eventID}`}>Update</Link>
+        <button className='btn btn-red' onClick={deleteEvent}>Delete</button>
       </div>
    </Modal>
  </>)

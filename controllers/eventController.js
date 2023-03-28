@@ -26,12 +26,7 @@ const addEvent = asyncHandler(async (req, res) => {
 //get one event
 
 const getEventID = asyncHandler(async (req, res) => {
-
-  // const originalID = mongoose.Types.ObjectId(req.params.id);
-  // const newHex = assert.equal(24, originalID.toHexString().length);
-
   const event = await Events.findById(req.params.id);
-
   if (!event) {
     res.status(404);
     throw new Error("Event not found");
@@ -94,17 +89,19 @@ const updateEvent = asyncHandler(async (req, res) => {
 //remove event
 
 const removeEvent = asyncHandler(async (req, res) => {
-    const eventid = await Events.findById(req.params.id); 
-    if(!eventid){
-        res.status(404);
-        throw new Error("event not found");
-    }
-    if (eventid.user.toString() !== req.user._id) {
-        res.status(401);
-        throw new Error("User not authorized");
-      }
-    await Events.remove();
-    res.status(200).json({ message: "Event deleted." });
+  const event = await Events.findById(req.params.id);
+  // if event doesnt exist
+  if (!event) {
+    res.status(404);
+    throw new Error("Event not found");
+  }
+  // Match event to its user
+  if (event.owner.toString() !== req.user.id) {
+    res.status(401);
+    throw new Error("User not authorized");
+  }
+  await event.remove();
+  res.status(200).json({ message: "Event deleted." });
 
 });
 

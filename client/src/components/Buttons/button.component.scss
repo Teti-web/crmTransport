@@ -2,6 +2,7 @@
 @import '../../style/variables';
 
 .btn{
+
     text-decoration: none;
     border: 0;
     font-family: $font-title;
@@ -13,6 +14,11 @@
     cursor: pointer;
     &:hover{
         box-shadow: 0px 3px 6px -3px $light-gray;
+    }
+
+    &-red{
+        color: $coral;
+        font-size: 16px;
     }
 }
 

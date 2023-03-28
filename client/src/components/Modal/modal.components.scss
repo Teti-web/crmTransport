@@ -21,6 +21,16 @@
       pointer-events: all;
     }
 
+    
+    &-container{
+      margin: 10px auto;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      text-align: center;
+      font-size: 16px;
+  }
+
     &-content{
         padding: 20px;
         background: $light-blue;
