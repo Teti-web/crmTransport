@@ -19,16 +19,16 @@ function App() {
   }
 
   return ( 
+
     <AuthContext.Provider value={{
       token, login, logout, userId, isAuthenticated
     }}>
-     
     <Router> 
-      {isAuthenticated }
+      {isAuthenticated}
        {routes}
     </Router>
-   
   </AuthContext.Provider>
+
   );
 }
 

@@ -64,11 +64,11 @@ const updateEvent = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("Event not found");
   }
-  // // Match product to its user
-  // if (event.user?.toString() !== req.user.id) {
-  //   res.status(401);
-  //   throw new Error("User not authorized");
-  // }
+  // Match product to its user
+  if (event.owner?.toString() !== req.user.id) {
+    res.status(401);
+    throw new Error("User not authorized");
+  }
 
   const updatedEvent = await Events.findByIdAndUpdate(
     { _id: req.params.id },

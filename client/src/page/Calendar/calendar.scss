@@ -9,3 +9,28 @@
     padding-bottom: 3px;
     border-bottom: 1px solid $light-gray;
 }
+
+.edit-form{
+    display: flex;
+    flex-direction: column;
+    padding-top: 25px;
+    margin: 20px;
+    text-align: center;
+    gap: 1rem;
+
+    .form-item{
+     display: flex;
+     justify-content: center;
+     gap: 1.5rem;
+     align-items: center;
+     font-size: 18px;
+
+     input{
+       width: max-content;
+       padding: 5px;
+       color: $black;
+       background: transparent;
+       border: 1px solid $dark-gray;
+     }
+    }
+}

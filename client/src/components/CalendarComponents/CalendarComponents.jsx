@@ -94,7 +94,7 @@ const deleteEvent = useCallback( async() => {
       })
       console.log(data);
       setEvents(data);
-      // window.location.reload();
+      window.location.reload();
       
     } catch (e) {}
 })
