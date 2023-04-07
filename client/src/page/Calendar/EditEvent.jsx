@@ -1,5 +1,5 @@
 import React, {useContext,useCallback,useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Topbar from '../../components/topbar/Topbar';
 import { AuthContext } from '../../context/AuthContext';
@@ -10,6 +10,7 @@ import './calendar.scss'
 const EditEvent = () => {
     const {token} = useContext(AuthContext);
     const {request}= useHttp();
+    const navigate = useNavigate(); 
     const [form, setForm] = useState({
         title:'', start:'', end:''
       });
@@ -36,10 +37,14 @@ const EditEvent = () => {
 
     const updateEvent = useCallback(async () =>{
         try {
-          const data = await request(`/api/events/updatevent/${eventID.id}`, 'PATCH', null,{
-            Authorization: `Bearer ${token}`
-          }) 
+          const formData = {
+            title: form.title,
+            start: form.start,
+            end: form.end
+          };
+          const data = await request(`/api/events/updatevent/${eventID.id}`, 'PATCH', formData) 
           setForm(data)
+          navigate('/calendar')
         } catch (e) {}
        })
 
@@ -50,19 +55,18 @@ const EditEvent = () => {
           <Topbar title='Edit event'/>
            <div className='edit-form'>
             <div className='form-item'>
-              <p>Title :</p>
+              <p>Title:</p>
               <input type="text" name='title' value={form?.title} onChange={changeHandler}/>
             </div>
             <div className='form-item'>
-              <p>Start :</p>
-              <input type='datetime-local' nameInput='start' value={form?.start} onChange={changeHandler}/>
+              <p>Start:</p>
+              <input type='datetime-local' name='start' value={moment(form?.start).format('YYYY-MM-DDTHH:mm:ss')}  onChange={changeHandler}/>
             </div>
             <div className='form-item'>
-              <p>End :</p>
-              <input type='datetime-local' nameInput='end' value={form?.end} onChange={changeHandler}/>
+              <p>End:</p>
+              <input type='datetime-local' name='end' value={moment(form?.end).format('YYYY-MM-DDTHH:mm:ss')}  onChange={changeHandler}/>
             </div>
-
-            <button className='btn-item' > Update</button>
+            <button className='btn-item' onClick={updateEvent} > Update</button>
            </div>
         </div>
     </section>    

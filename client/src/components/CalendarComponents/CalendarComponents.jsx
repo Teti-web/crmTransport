@@ -136,6 +136,7 @@ const deleteEvent = useCallback( async() => {
    eventAdd={(event) => onEventAdded(event)}
    datesSet={(data)=>getEventData(data)}
    eventClick={(info)=>onEventClicked(info)}
+   dateClick={()=>openModal(modalActive)}
      />
    </div>
     <Modal active={modalActive} setActive={setmodalActive} onEventAdded={(event)=>onEventAdded(event)}>

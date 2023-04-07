@@ -56,6 +56,7 @@ const getEvents = asyncHandler(async (req, res) => {
 
 const updateEvent = asyncHandler(async (req, res) => {
   const { title, start, end} = req.body;
+  const { id } = req.params;
 
   const event = await Events.findById(req.params.id);
 
@@ -71,7 +72,8 @@ const updateEvent = asyncHandler(async (req, res) => {
   }
 
   const updatedEvent = await Events.findByIdAndUpdate(
-    { _id: req.params.id },
+    
+    { _id: id },
     {
       title,
       start,
@@ -80,8 +82,15 @@ const updateEvent = asyncHandler(async (req, res) => {
     {
       new: true,
       runValidators: true,
+    },
+    (err)=>{
+      if (err){
+        console.error(err);
+      }else{
+        console.log("Updated successfully");
+      }
     }
-  );
+  )
 
   res.status(200).json(updatedEvent);
 });
