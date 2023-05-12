@@ -14,6 +14,7 @@ import Drivers from './page/Drivers/Drivers';
 import RoutesPage from './page/routesPage/Routes'
 import EditProfil from "./page/Profil/EditProfil";
 import EditEvent from "./page/Calendar/EditEvent";
+import EditCar from "./page/Cars/EditCar";
 
 
 export const useRoutes = isAuthenticated =>{
@@ -28,6 +29,7 @@ export const useRoutes = isAuthenticated =>{
                  <Route path='/calendar' element={<Calendar/>}/>
                  <Route path='/event-edit/:id' element={<EditEvent/>}/>
                  <Route path='/cars' element={<Cars/>}/>
+                 <Route path='/editcar/:id' element={<EditCar/>}/>
                  <Route path='/clients' element={<Clients/>}/>
                  <Route path='/drivers' element={<Drivers/>}/>
                  <Route path='/routes' element={<RoutesPage/>}/>

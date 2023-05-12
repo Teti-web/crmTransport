@@ -8,7 +8,6 @@ import Forms from '../../components/Forms/Forms';
 import Input from '../../components/Forms/Input';
 import { useHttp } from '../../hooks/http.hook';
 import { ToastContainer, toast } from 'react-toastify';
-import './driver.scss'
 
 
 

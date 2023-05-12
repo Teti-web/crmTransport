@@ -7,9 +7,9 @@ const protect = require('../middleWare/authMiddleware');
 
 //api/cars/....
 router.post('/addcar', carController.addCar);
-router.get('/getcar', protect, carController.getCar);
+router.get('/getcar/:id', protect, carController.getCar);
 router.get('/getall', protect, carController.getAll);
 router.get('/getcount', protect, carController.getCoutn);
-router.patch("/updatecar", protect, carController.updateCar);
+router.patch("/updatecar/:id", protect, carController.updateCar);
 
 module.exports = router;

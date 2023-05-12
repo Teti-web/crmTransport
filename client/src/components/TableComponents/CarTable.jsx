@@ -7,18 +7,15 @@ import {FaSortDown} from 'react-icons/fa';
 import {FaSortUp} from 'react-icons/fa';
 import './table.components.scss'
 import GlobalFilter from './GlobalFilter';
-import { useParams } from 'react-router-dom';
-import Forms from '../Forms/Forms';
-import Modal from '../Modal/Modal'
-
+import { Link, useParams } from 'react-router-dom';
+import Button from '../Buttons/Button';
 
 const CarTable = () => {
-
     const {request}=useHttp();
     const {token} = useContext(AuthContext);
     const columns = useMemo(() => COLUMNS, []);
     const [car, setCar] = useState([]);
- 
+    const {id} = useParams(); 
 
     const getCarData = useCallback( async () =>{
         try {
@@ -35,14 +32,14 @@ const CarTable = () => {
     }, [getCarData]);
 
     const data = useMemo(()=> car);
-    
+
     
     const tableInstance= useTable({
        columns,
        data
     },
     useGlobalFilter, 
-    useSortBy
+    useSortBy,
     );
 
     const {
@@ -53,7 +50,7 @@ const CarTable = () => {
         prepareRow,
         preGlobalFilteredRows,
         setGlobalFilter,
-        state
+        state,
       }=tableInstance;
 
   return (
@@ -87,12 +84,12 @@ const CarTable = () => {
         {rows.map(row => {
             prepareRow(row)
             return (
-              <tr {...row.getRowProps()}>
+              <tr {...row.getRowProps()} >
                 {row.cells.map(cell => {
                   return(
                   <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                 )})}
-  
+                <td><Link className='task-btn' to={`/editcar/${row.original._id}`}>Edit</Link></td>
               </tr>
             )
           })}

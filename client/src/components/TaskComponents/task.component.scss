@@ -14,21 +14,6 @@
         align-items: center;
     }
 
-    &-btn{
-        padding: 5px 10px;
-        border: 1px solid $gray;
-        background: transparent;
-        border-radius: 5px;
-        color: $black;
-        transition: .5s;
-        transform: translateY(20%);
-        
-        &:hover{
-           color: $blue;
-           border-color: $blue;
-        }
-    }
-
     &-listItems{
         width: 100%;
         display: flex;

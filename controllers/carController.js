@@ -33,7 +33,7 @@ const getAll= asyncHandler(async (req, res) => {
 });
 // Get Car Data
 const getCar = asyncHandler(async (req, res) => {
-    const car = await Car.findById(req.car._id);
+    const car = await Car.findById(req.params.id);
     if (!car) {
       res.status(404);
       throw new Error("Car not found");
@@ -49,19 +49,19 @@ const getCoutn = asyncHandler(async (req, res)=>{
 
 // Update the Car
 const updateCar = asyncHandler(async (req, res) => {
-    const car = await Car.findById(req.car._id);
+    const car = await Car.findById(req.params.id);
     if (car) {
         const { car_brand,model, registration, vin, insurance, end_insurance, overview, end_overview } = car;
-        Car.car_brand = car_brand;
-        Car.model = model;
-        Car.registration = registration;
-        Car.vin = vin;
-        Car.end_insurance = req.body.end_insurance || end_insurance;
-        Car.insurance = req.body.insurance || insurance;
-        Car.overview = req.body.overview || overview;
-        Car.end_overview = req.body.end_overview || end_overview;
+        car.car_brand = car_brand;
+        car.model = model;
+        car.registration = registration;
+        car.vin = vin;
+        car.end_insurance = req.body.end_insurance || end_insurance;
+        car.insurance = req.body.insurance || insurance;
+        car.overview = req.body.overview || overview;
+        car.end_overview = req.body.end_overview || end_overview;
     
-        const updatedCar = await Car.save();
+        const updatedCar = await car.save();
         res.status(200).json({
           _id: updatedCar._id,
           car_brand: updatedCar.car_brand,

@@ -14,7 +14,7 @@ const Cars = () => {
   const [formKey, setFormKey]= useState(1);
   const {request}= useHttp();
   const [form, setForm] = useState({
-    name:'',email:'', tel:'', adress:''
+    car_brand:'',model:'', registration:'', vin:'', insurance:'', end_insurance:'', overview:'', end_overview:''
   });
 
    const changeHandler = event =>{
