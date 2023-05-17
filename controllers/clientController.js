@@ -45,10 +45,10 @@ const getAll= asyncHandler(async (req, res) => {
 });
 // Get Client Data
 const getClient = asyncHandler(async (req, res) => {
-    const client = await Client.findById(req.client._id);
+    const client = await Client.findById(req.params.id);
     if (!client) {
       res.status(404);
-      throw new Error("Product not found");
+      throw new Error("Client not found");
     }
     res.status(200).json(client);
 });
@@ -61,15 +61,15 @@ const getCoutn = asyncHandler(async (req, res)=>{
 
 // Update the Client
 const updateClient = asyncHandler(async (req, res) => {
-    const client = await Client.findById(req.client._id);
+    const client = await Client.findById(req.params.id);
     if (client) {
         const { name, email, adress, tel } = client;
-        Client.email = email;
-        Client.name = req.body.name || name;
-        Client.tel = req.body.tel || tel;
-        Client.adress = req.body.adress || adress;
+        client.email = email;
+        client.name = req.body.name || name;
+        client.tel = req.body.tel || tel;
+        client.adress = req.body.adress || adress;
     
-        const updatedClient = await Client.save();
+        const updatedClient = await client.save();
         res.status(200).json({
           _id: updatedClient._id,
           name: updatedClient.name,

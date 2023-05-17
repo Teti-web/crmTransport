@@ -46,7 +46,7 @@ const getAll= asyncHandler(async (req, res) => {
 });
 // Get Driver Data
 const getDriver = asyncHandler(async (req, res) => {
-    const driver = await Driver.findById(req.driver._id);
+    const driver = await Driver.findById(req.params.id);
     if (!driver) {
       res.status(404);
       throw new Error("Product not found");
@@ -62,7 +62,7 @@ const getCoutn = asyncHandler(async (req, res)=>{
 
 // Update the driver
 const updateDriver = asyncHandler(async (req, res) => {
-    const driver = await Driver.findById(req.driver._id);
+    const driver = await Driver.findById(req.params.id);
     if (driver) {
         const { name, email,date_of_birth, category, tel } = driver;
         driver.email = email;

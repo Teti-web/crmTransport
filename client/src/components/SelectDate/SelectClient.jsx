@@ -11,7 +11,7 @@ const SelectClient = (props) => {
     const {request}= useHttp();
     const getClientData = useCallback( async () =>{
         try {
-          const dataClient = await request('api/clients/getall', 'GET', null)
+          const dataClient = await request('/api/clients/getall', 'GET', null)
          setClient(dataClient);
         } catch (e) {}
       

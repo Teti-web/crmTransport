@@ -9,7 +9,7 @@ const SelectDriver = (props) => {
     const {request}= useHttp();
     const getDriverData = useCallback( async () =>{
         try {
-          const dataDriver = await request('api/drivers/getall', 'GET', null)
+          const dataDriver = await request('/api/drivers/getall', 'GET', null)
          setDriver(dataDriver);
         } catch (e) {}
       

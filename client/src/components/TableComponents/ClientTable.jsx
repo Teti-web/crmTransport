@@ -7,6 +7,7 @@ import {FaSortDown} from 'react-icons/fa';
 import {FaSortUp} from 'react-icons/fa';
 import './table.components.scss'
 import GlobalFilter from './GlobalFilter';
+import {Link} from 'react-router-dom'
 
 const ClientTable = () => {
     const {request}=useHttp();
@@ -84,6 +85,7 @@ const ClientTable = () => {
                 {row.cells.map(cell => {
                   return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                 })}
+                <td><Link className='task-btn' to={`/editclient/${row.original._id}`}>Edit</Link></td>
               </tr>
             )
           })}

@@ -8,6 +8,7 @@ import {FaSortUp} from 'react-icons/fa';
 import {FaSort} from 'react-icons/fa';
 import './table.components.scss'
 import GlobalFilter from './GlobalFilter';
+import {Link} from 'react-router-dom'
 
 const BasicTable = () => {
     const {request}=useHttp();
@@ -85,6 +86,7 @@ const BasicTable = () => {
                 {row.cells.map(cell => {
                   return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                 })}
+                <td><Link className='task-btn' to={`/editdriver/${row.original._id}`}>Edit</Link></td>
               </tr>
             )
           })}

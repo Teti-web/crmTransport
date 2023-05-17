@@ -7,9 +7,9 @@ const protect = require('../middleWare/authMiddleware');
 
 //api/drivers/....
 router.post('/adddrive', driverController.addedDriver);
-router.get('/getdriver', protect, driverController.getDriver);
+router.get('/getdriver/:id', protect, driverController.getDriver);
 router.get('/getall', protect, driverController.getAll);
 router.get('/getcount', protect, driverController.getCoutn);
-router.patch("/updatedriver", protect, driverController.updateDriver);
+router.patch("/updatedriver/:id", protect, driverController.updateDriver);
 
 module.exports = router;

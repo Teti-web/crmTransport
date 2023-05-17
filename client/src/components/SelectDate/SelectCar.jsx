@@ -9,7 +9,7 @@ const SelectCar = (props) => {
     const {request}= useHttp();
     const getCarData = useCallback( async () =>{
         try {
-          const dataCar = await request('api/cars/getall', 'GET', null)
+          const dataCar = await request('/api/cars/getall', 'GET', null)
          setCar(dataCar);
         } catch (e) {}
       

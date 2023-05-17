@@ -41,7 +41,7 @@ const getAllforChart= asyncHandler(async (req, res) => {
 
 //Get route
 const getRoute = asyncHandler(async (req, res) => {
-    const route = await Routes.findById(req.route._id);
+    const route = await Routes.findById(req.params.id);
     if (!route) {
         res.status(404);
         throw new Error("Route not found");
@@ -57,19 +57,19 @@ const getCoutn = asyncHandler(async (req, res)=>{
 
   // Update the Route
 const updateRoute = asyncHandler(async (req, res) => {
-    const route = await Routes.findById(req.route._id);
+    const route = await Routes.findById(req.params.id);
     if (route) {
         const { name, start, start_date, finish, finish_date,driver, car, client } = route;
-        Routes.name = name;
-        Routes.start = start;
-        Routes.start_date=start_date;
-        Routes.finish=finish;
-        Routes.finish_date=finish_date;
-        Routes.driver = req.body.driver || driver;
-        Routes.car = req.body.car || car;
-        Routes.client = req.body.client || client;
+        route.name = name;
+        route.start = start;
+        route.start_date=start_date;
+        route.finish=finish;
+        route.finish_date=finish_date;
+        route.driver = req.body.driver || driver;
+        route.car = req.body.car || car;
+        route.client = req.body.client || client;
     
-        const updatedRoute = await Routes.save();
+        const updatedRoute = await route.save();
         res.status(200).json({
           _id: updatedRoute._id,
         name:updatedRoute.name,
