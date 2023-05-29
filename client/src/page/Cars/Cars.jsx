@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useCallback, useEffect, useContext} from 'react';
 import Topbar from '../../components/topbar/Topbar';
 import Sidebar from '../../components/sidebar/Sidebar';
 import { useHttp } from '../../hooks/http.hook';
@@ -7,16 +7,20 @@ import { ToastContainer, toast } from 'react-toastify';
 import Forms from '../../components/Forms/Forms';
 import Input from '../../components/Forms/Input';
 import Modal from '../../components/Modal/Modal';
-import CarTable from '../../components/TableComponents/CarTable'
+import CarTable from '../../components/TableComponents/CarTable';
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
+import { AuthContext } from '../../context/AuthContext';
 
 const Cars = () => {
   const [modalActive, setmodalActive] = useState(false);
   const [formKey, setFormKey]= useState(1);
   const {request}= useHttp();
+  const {token} = useContext(AuthContext);
   const [form, setForm] = useState({
     car_brand:'',model:'', registration:'', vin:'', insurance:'', end_insurance:'', overview:'', end_overview:''
   });
-
+  const [cars, setCars] = useState([]);
    const changeHandler = event =>{
     setForm({...form, [event.target.name]:event.target.value})
    }
@@ -35,6 +39,29 @@ const Cars = () => {
     }
     setFormKey(formKey+1);
   }
+
+  const getCarsData = useCallback( async () =>{
+    try {
+      const dataCars = await request('api/cars/getall', 'GET', null,{
+        Authorization: `Bearer ${token}`
+     })
+     setCars(dataCars);
+    } catch (e) {}
+  
+},[token,request])
+useEffect(() => {
+  getCarsData()
+}, [getCarsData]);
+  const[fileName,setFileName]=useState("Reports");
+  const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+  const fileExtension = '.xlsx';
+  const downloadFile = () => {
+    const ws = XLSX.utils.json_to_sheet(cars);
+    const wb = { Sheets: { 'data': ws }, SheetNames: ['data'] };
+    const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' })
+    const data = new Blob([excelBuffer], {type: fileType});
+     FileSaver.saveAs(data, fileName + fileExtension);
+  }
   return (
     <section className=' section'>
     <Sidebar/>
@@ -48,7 +75,9 @@ const Cars = () => {
               <Button classCSS='btn'
               buttonTitle='Add car'
               buttonOnClick={()=>setmodalActive(true)}/>
-
+              <Button classCSS='btn'
+              buttonTitle='Download cars data'
+              buttonOnClick={(e) => downloadFile()}/>
             </div>
             <CarTable/>
           </div>

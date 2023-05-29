@@ -85,7 +85,7 @@ const ClientTable = () => {
                 {row.cells.map(cell => {
                   return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                 })}
-                <td><Link className='task-btn' to={`/editclient/${row.original._id}`}>Edit</Link></td>
+                <td><Link className='task-btn' to={`/profitclient/${row.original._id}`}>Detail</Link></td>
               </tr>
             )
           })}

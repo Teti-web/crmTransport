@@ -15,7 +15,7 @@ import RoutesPage from './page/routesPage/Routes'
 import EditProfil from "./page/Profil/EditProfil";
 import EditEvent from "./page/Calendar/EditEvent";
 import EditCar from "./page/Cars/EditCar";
-import EditClients from "./page/Clients/EditClients";
+import DetailClients from "./page/Clients/DetailClients";
 import EditDrivers from "./page/Drivers/EditDrivers";
 import EditRoute from "./page/routesPage/EditRoute";
 
@@ -34,7 +34,7 @@ export const useRoutes = isAuthenticated =>{
                  <Route path='/cars' element={<Cars/>}/>
                  <Route path='/editcar/:id' element={<EditCar/>}/>
                  <Route path='/clients' element={<Clients/>}/>
-                 <Route path='//editclient/:id' element={<EditClients/>}/>
+                 <Route path='/profitclient/:id' element={<DetailClients/>}/>
                  <Route path='/drivers' element={<Drivers/>}/>
                  <Route path='/editdriver/:id' element={<EditDrivers/>}/>
                  <Route path='/routes' element={<RoutesPage/>}/>

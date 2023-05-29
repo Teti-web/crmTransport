@@ -59,6 +59,14 @@ a{
       padding: 3px;
       border-radius: 0;
   }
+
+  textarea{
+    background-color: transparent;
+      border-bottom: 1px solid $dark-gray;
+      color: $black;
+      padding: 10px;
+      align-items: center;
+  }
 }
 
 .authinfo{
@@ -223,7 +231,8 @@ button.fancy {
 .table-header{
   padding: 10px ;
   display: flex;
-  justify-content: space-between;
+  gap: 2rem;
+  justify-content:flex-start;
 }
 
 .input-date{

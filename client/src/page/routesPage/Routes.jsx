@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect, useCallback} from 'react'
 import Topbar from '../../components/topbar/Topbar';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Button from '../../components/Buttons/Button';
@@ -12,12 +12,15 @@ import SelectDriver from '../../components/SelectDate/SelectDriver';
 import RouteTable from '../../components/TableComponents/RouteTable';
 import SelectCar from '../../components/SelectDate/SelectCar';
 import SelectClient from '../../components/SelectDate/SelectClient';
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
 
 const Routes = () => {
   const [modalActive, setmodalActive] = useState(false);
   const [formKey, setFormKey]= useState(1);
   const {token} = useContext(AuthContext);
   const {request}= useHttp();
+  const [routes, setRoutes] = useState([]);
   const [form, setForm] = useState({
     name:'',start:'', start_date:'', finish:'', finish_date:'', price:'', driver:'', car:'', client:''
   });
@@ -41,6 +44,28 @@ const Routes = () => {
     }
     setFormKey(formKey+1);
   }
+  const getRoutesData = useCallback( async () =>{
+    try {
+      const dataRoutes = await request('api/routes/getall', 'GET', null,{
+        Authorization: `Bearer ${token}`
+     })
+     setRoutes(dataRoutes);
+    } catch (e) {}
+  
+},[token,request])
+useEffect(() => {
+  getRoutesData()
+}, [getRoutesData]);
+  const[fileName,setFileName]=useState("Reports");
+  const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+  const fileExtension = '.xlsx';
+  const downloadFile = () => {
+    const ws = XLSX.utils.json_to_sheet(routes);
+    const wb = { Sheets: { 'data': ws }, SheetNames: ['data'] };
+    const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' })
+    const data = new Blob([excelBuffer], {type: fileType});
+     FileSaver.saveAs(data, fileName + fileExtension);
+  }
   return (
     <section className=' section'>
     <Sidebar/>
@@ -54,7 +79,9 @@ const Routes = () => {
               <Button classCSS='btn'
               buttonTitle='Add route'
               buttonOnClick={()=>setmodalActive(true)}/>
-
+              <Button classCSS='btn'
+              buttonTitle='Download routes data'
+              buttonOnClick={(e) => downloadFile()}/>
             </div>
             <RouteTable/>
           </div>

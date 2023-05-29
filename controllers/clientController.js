@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const Client = require("../models/ClientModel");
+const Client = require("../models/clientModel");
 
 
 // Added Client
@@ -68,6 +68,7 @@ const updateClient = asyncHandler(async (req, res) => {
         client.name = req.body.name || name;
         client.tel = req.body.tel || tel;
         client.adress = req.body.adress || adress;
+        client.bio = req.body.bio || bio;
     
         const updatedClient = await client.save();
         res.status(200).json({
@@ -75,7 +76,8 @@ const updateClient = asyncHandler(async (req, res) => {
           name: updatedClient.name,
           email: updatedClient.email,
           adress: updatedClient.adress,
-          tel: updatedClient.tel
+          tel: updatedClient.tel,
+          bio: updatedClient.bio
         });
       } else {
         res.status(404);
