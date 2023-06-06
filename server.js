@@ -3,7 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const config = require("config");
+const cookieParser = require("cookie-parser");
 const userRoute = require("./routes/userRoute");
 const driverRoute = require("./routes/driverRoute");
 const clientRoute = require("./routes/clientRoute");
@@ -12,7 +12,7 @@ const routesRoute = require('./routes/routesRoute');
 const eventsRoute = require("./routes/eventsRoute");
 const taskRoute = require("./routes/taskRoute")
 const errorHandler = require("./middleWare/errorMiddleware");
-const cookieParser = require("cookie-parser");
+
 const path = require("path");
 
 const app = express();
@@ -35,8 +35,6 @@ app.use(
   })
 );
 
-// app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
 // Routes Middleware
 app.use("/api/users", userRoute);
 app.use("/api/drivers", driverRoute);
@@ -54,7 +52,7 @@ app.get("/", (req, res) => {
 app.use(errorHandler);
 
 // Connect to DB and start server
-const PORT = config.get('port');
+const PORT = process.env.PORT || 5000;
 mongoose
   .connect(process.env.MONGO_URI, { 
     useNewUrlParser: true,
